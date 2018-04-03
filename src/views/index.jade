@@ -38,23 +38,23 @@ block content
             span.small-title avg block time
             span.big-details {{ avgBlockTime | avgTimeFilter }}
           div.clearfix
-      div.col-xs-2.stat-holder
-        div.big-info.difficulty.text-orange
-          div.pull-left.icon-full-width
-            i.icon-hashrate
-          div.big-details-holder
-            span.small-title avg network hashrate
-            span.big-details(ng-bind-html="avgHashrate | networkHashrateFilter")
-          div.clearfix
-      div.col-xs-2.stat-holder
-        div.big-info.difficulty.text-danger
-          div.pull-left.icon-full-width
-            i.icon-difficulty
-          div.big-details-holder
-            span.small-title difficulty
-            span.big-details
-              span.small-hash {{ lastDifficulty | totalDifficultyFilter }}
-          div.clearfix
+      //div.col-xs-2.stat-holder
+      //  div.big-info.difficulty.text-orange
+      //    div.pull-left.icon-full-width
+      //      i.icon-hashrate
+      //    div.big-details-holder
+      //      span.small-title avg network hashrate
+      //      span.big-details(ng-bind-html="avgHashrate | networkHashrateFilter")
+      //    div.clearfix
+      //div.col-xs-2.stat-holder
+      //  div.big-info.difficulty.text-danger
+      //    div.pull-left.icon-full-width
+      //      i.icon-difficulty
+      //    div.big-details-holder
+      //      span.small-title difficulty
+      //      span.big-details
+      //        span.small-hash {{ lastDifficulty | totalDifficultyFilter }}
+      //    div.clearfix
 
       div.clearfix
 
@@ -68,10 +68,10 @@ block content
               span.small-title active nodes
               span.small-value {{nodesActive}}/{{nodesTotal}}
           div.col-xs-2.stat-holder.box
-            div.gasprice.text-info
-              i.icon-gasprice
-              span.small-title gas price
-              span.small-value {{ bestStats.gasPrice.toString() | gasPriceFilter }}
+            div.uptime(class="{{ upTimeTotal | upTimeClass : true }}")
+              i.icon-bulb
+              span.small-title uptime
+              span.small-value {{ upTimeTotal | upTimeFilter }}
           div.col-xs-2.stat-holder.box
             div.gasprice.text-info
               i.icon-gasprice
@@ -82,12 +82,6 @@ block content
               i.icon-clock
               span.small-title page latency
               span.small-value {{latency}} ms
-          div.col-xs-2.stat-holder.box
-            div.uptime(class="{{ upTimeTotal | upTimeClass : true }}")
-              i.icon-bulb
-              span.small-title uptime
-              span.small-value {{ upTimeTotal | upTimeFilter }}
-          div.col-xs-2.stat-holder.box
 
         div.row
           div.col-xs-8
@@ -151,10 +145,12 @@ block content
                   sparkchart.big-details.spark-difficulty(data="{{lastGasLimit.join(',')}}")
 
 
+    div.row
+      div.col-xs-4.stat-holder.map-holder
+        //- div.col-xs-12
+        nodemap#mapHolder(data="map")
 
-          div.col-xs-4.stat-holder.map-holder
-            //- div.col-xs-12
-            nodemap#mapHolder(data="map")
+
 
     div.row
       div.col-xs-12.stats-boxes
