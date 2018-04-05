@@ -72,7 +72,7 @@ block content
           //- i.icon-time
           span.small-title block time
           //- span.small-value {{ avgBlockTime | avgTimeFilter }}
-          sparkchart.big-details.spark-blocktimes(data="{{lastBlocksTime.join(',')}}", tooltipsuffix="s")
+          sparkchart.big-details.spark-blocktimes(data="{{lastBlocksTime.join(',')}}", tooltipsuffix="s", width="14px")
 
       div.col-xs-2.stat-holder.xpull-right
         div.big-info.chart.xdouble-chart(class="{{ blockPropagationAvg | propagationAvgTimeClass : true }}")
@@ -136,7 +136,7 @@ block content
       //- div.clearfix
 
     div.row(ng-cloak, style="padding-top: 10px")
-      table.table.table-striped
+      table.table
         thead
           tr.text-info
             th.th-nodecheck

@@ -1,5 +1,6 @@
 html {
 	width: 100%;
+	min-width: 1900px;
 }
 
 body {
@@ -30,6 +31,10 @@ header {
 
 	background: #030335;
 	mix-blend-mode: normal;
+}
+
+.row {
+	min-width: 1900px;
 }
 
 #shape1, #shape2, #shape3 {
@@ -174,7 +179,7 @@ header {
 .bg-warning,
 .bg-orange,
 .bg-danger {
-	color: #000;
+	color: #fff;
 }
 
 .text-gray {
@@ -200,7 +205,7 @@ header {
 }
 
 .blocktime-holder {
-	width: 33.8333333%;
+	width: calc(33.3333333% + 10px);
 }
 
 .big-info {
@@ -210,12 +215,12 @@ header {
 
 .big-info .icon-full-width {
 	display: block;
-	width: 85px;
-	height: 70px;
+	width: 50px;
+	height: 50px;
 	font-size: 70px;
 	line-height: 70px;
-	padding-right: 15px;
-	padding-left: -15px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 .big-info span.small-title,
@@ -256,14 +261,10 @@ span.small-title span.small {
 	font-size: 87%;
 }
 
-.blocktime-holder canvas {
-	width: 600px !important;
-}
-
 .big-info .big-details-holder {
 	position: absolute;
 	top: 15px;
-	left: 99px;
+	left: 80px;
 }
 
 .big-info.chart {
@@ -381,11 +382,6 @@ table i {
 	-moz-osx-font-smoothing: auto;
 }
 
-table th,
-table td {
-	border-color: #222 !important;
-}
-
 table td {
 	line-height: 18px !important;
 }
@@ -411,6 +407,11 @@ nodepropagchart {
 	width: 107px;
 	height: 20px;
 	vertical-align: top;
+}
+
+.table {
+	background-color: white !important;
+	border-radius: 4px;
 }
 
 .table>tbody>tr>td,
@@ -467,10 +468,17 @@ nodepropagchart {
 	padding: 0;
 	position: absolute;
 	top: 93px;
-	left: 1301px;
+	left: 1322px;
 	width: 584px;
 	height: 360px;
 	z-index: 1;
+}
+
+@media only screen and (min-width: 1900px) {
+	.map-holder {
+		right: 10px;
+		left: auto;
+	}
 }
 
 #mapHolder {

@@ -108,6 +108,7 @@ angular.module('netStatsApp.directives', [])
 						element.addClass("big-details");
 						element.sparkline('html', {
 							type: 'bar',
+							barWidth: attrs.width,
 							tooltipSuffix: (attrs.tooltipsuffix || '')
 						});
 					});
@@ -210,21 +211,21 @@ angular.module('netStatsApp.directives', [])
 				scope.init = function() {
 					element.empty();
 
-					var width = 628,
-						height = 202;
+					var width = 584,
+						height = 360;
 
 					scope.map = new Datamap({
 						element: element[0],
 						scope: 'world',
 						width: width,
-						height: 242,
+						height: height,
 						fills: {
-							success: '#7BCC3A',
+							success: '#6BBF28',
 							info: '#227ECC',
 							warning: '#FFD162',
 							orange: '#FF8A00',
-							danger: '#F74B4B',
-							defaultFill: '#282828'
+							danger: '#F63030',
+							defaultFill: '#D8E0E4'
 						},
 						geographyConfig: {
 							borderWidth: 0,
