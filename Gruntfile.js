@@ -129,8 +129,23 @@ module.exports = function(grunt) {
 						cwd: 'src/js/lib/',
 						src: ['*.*'],
 						dest: 'dist/js/lib'
-					}
-				]
+					},
+          {
+            expand: true,
+            cwd: 'src/shapes/',
+						src: ['*.svg'],
+            dest: 'dist/shapes/',
+            filter: 'isFile'
+          },
+          {
+            expand: true,
+            cwd: 'src/images/',
+            src: ['*.png'],
+            dest: 'dist/images/',
+            filter: 'isFile'
+          },
+
+        ]
 			},
 			build_lite: {
 				files: [
@@ -263,6 +278,10 @@ module.exports = function(grunt) {
 				dest: 'dist-lite/js/app.min.js',
 				src: ['<%= concat.scripts_lite.dest %>']
 			}
+		},
+		watch: {
+      files: ['src/**/*.css', 'src/**/*.jade'],
+			tasks: "default"
 		}
 	});
 
@@ -272,6 +291,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-jade');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
 	grunt.registerTask('default', ['clean:build', 'clean:cleanup_js', 'clean:cleanup_css', 'jade:build', 'copy:build', 'cssmin:build', 'concat:vendor', 'concat:scripts', 'uglify:app', 'concat:netstats', 'concat:css', 'clean:cleanup_js', 'clean:cleanup_css']);
 	grunt.registerTask('lite', ['clean:build_lite', 'clean:cleanup_js_lite', 'clean:cleanup_css_lite', 'jade:build_lite', 'copy:build_lite', 'cssmin:build_lite', 'concat:vendor_lite', 'concat:scripts_lite', 'uglify:app_lite', 'concat:netstats_lite', 'concat:css_lite', 'clean:cleanup_js_lite', 'clean:cleanup_css_lite']);

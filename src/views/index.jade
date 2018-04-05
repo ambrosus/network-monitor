@@ -3,19 +3,42 @@ extends ./layout.jade
 
 block content
   div.container-fluid(ng-controller='StatsCtrl')
+    header
+      div#shape1
+      div#shape2
+      div#shape3
+      div.header-container
+        div.logo
+          img(src="images/Ambrosus.png").logo-image
+          p.logo-text Network monitor
+        div.status-container
+          div.status.active-nodes
+            p.status-name Active Nodes
+            span.status-value(class="{{ nodesActive | nodesActiveClass : nodesTotal }}") {{nodesActive}}/{{nodesTotal}}
+          div.status.gas-price
+            p.status-name Nectar Price
+            span.status-value {{ bestStats.gasPrice.toString() | gasPriceFilter }}
+          div.status.gas-limit
+            p.status-name Nectar Limit
+            span.status-value {{ bestStats.block.gasLimit }} nectar
+          div.status.page-latency
+            p.status-name Page Latency
+            span.status-value(class="{{ {active: true, latency: latency} | latencyClass }}") {{latency}} ms
+          div.status.uptime
+            p.status-name Uptime
+            span.status-value(class="{{ upTimeTotal | upTimeClass : true }}") {{ upTimeTotal | upTimeFilter }}
+
     div.row(ng-cloak)
       div.col-xs-2.stat-holder
         div.big-info.bestblock.text-info
-          div.pull-left.icon-full-width
-            i.icon-block
+          img.icon-full-width(src="images/best-block-icon.png")
           div.big-details-holder
             span.small-title best block
             span.big-details {{'#'}}{{ bestBlock | number}}
           div.clearfix
       div.col-xs-2.stat-holder
         div.big-info.uncleCount.text-info
-          div.pull-left.icon-full-width
-            i.icon-uncle
+          img.icon-full-width(src="images/uncles-icon.png")
           div.big-details-holder
             span.small-title uncles&nbsp;
               span.small (current / last 50)
@@ -23,8 +46,7 @@ block content
           div.clearfix
       div.col-xs-2.stat-holder
         div.big-info.blocktime(class="{{ lastBlock | timeClass : true }}")
-          div.pull-left.icon-full-width
-            i.icon-time
+          img.icon-full-width(src="images/last-block-icon.png")
           div.big-details-holder
             span.small-title last block
             span.big-details {{ lastBlock | blockTimeFilter }}
@@ -32,134 +54,77 @@ block content
           div.clearfix
       div.col-xs-2.stat-holder
         div.big-info.avgblocktime(class="{{ avgBlockTime | avgTimeClass }}")
-          div.pull-left.icon-full-width
-            i.icon-gas
+          img.icon-full-width(src="images/block-time-icon.png")
           div.big-details-holder
             span.small-title avg block time
             span.big-details {{ avgBlockTime | avgTimeFilter }}
           div.clearfix
-      //div.col-xs-2.stat-holder
-      //  div.big-info.difficulty.text-orange
-      //    div.pull-left.icon-full-width
-      //      i.icon-hashrate
-      //    div.big-details-holder
-      //      span.small-title avg network hashrate
-      //      span.big-details(ng-bind-html="avgHashrate | networkHashrateFilter")
-      //    div.clearfix
-      //div.col-xs-2.stat-holder
-      //  div.big-info.difficulty.text-danger
-      //    div.pull-left.icon-full-width
-      //      i.icon-difficulty
-      //    div.big-details-holder
-      //      span.small-title difficulty
-      //      span.big-details
-      //        span.small-hash {{ lastDifficulty | totalDifficultyFilter }}
-      //    div.clearfix
+      div.col-xs-4.stat-holder.map-holder
+        //- div.col-xs-12
+        nodemap#mapHolder(data="map")
 
       div.clearfix
 
 
     div.row(ng-cloak)
-      div.col-xs-12.stats-boxes(style="padding-top: 0px;")
-        div.row.second-row
-          div.col-xs-2.stat-holder.box
-            div.active-nodes(class="{{ nodesActive | nodesActiveClass : nodesTotal }}")
-              i.icon-node
-              span.small-title active nodes
-              span.small-value {{nodesActive}}/{{nodesTotal}}
-          div.col-xs-2.stat-holder.box
-            div.uptime(class="{{ upTimeTotal | upTimeClass : true }}")
-              i.icon-bulb
-              span.small-title uptime
-              span.small-value {{ upTimeTotal | upTimeFilter }}
-          div.col-xs-2.stat-holder.box
-            div.gasprice.text-info
-              i.icon-gasprice
-              span.small-title gas limit
-              span.small-value {{ bestStats.block.gasLimit }} gas
-          div.col-xs-2.stat-holder.box
-            div.page-latency(class="{{ {active: true, latency: latency} | latencyClass }}")
-              i.icon-clock
-              span.small-title page latency
-              span.small-value {{latency}} ms
+      div.col-xs-4.stat-holder.blocktime-holder
+        div.big-info.chart(class="{{ avgBlockTime | avgTimeClass }}")
+          //- i.icon-time
+          span.small-title block time
+          //- span.small-value {{ avgBlockTime | avgTimeFilter }}
+          sparkchart.big-details.spark-blocktimes(data="{{lastBlocksTime.join(',')}}", tooltipsuffix="s")
 
-        div.row
-          div.col-xs-8
-            div.row
-              div.col-xs-3.stat-holder
-                div.big-info.chart(class="{{ avgBlockTime | avgTimeClass }}")
-                  //- i.icon-time
-                  span.small-title block time
-                  //- span.small-value {{ avgBlockTime | avgTimeFilter }}
-                  sparkchart.big-details.spark-blocktimes(data="{{lastBlocksTime.join(',')}}", tooltipsuffix="s")
+      div.col-xs-2.stat-holder.xpull-right
+        div.big-info.chart.xdouble-chart(class="{{ blockPropagationAvg | propagationAvgTimeClass : true }}")
+          //- i.icon-gas
+          span.small-title block propagation
+          //- span.small-value {{ blockPropagationAvg | blockPropagationFilter : '' }}
+          histogram.big-details.d3-blockpropagation(data="blockPropagationChart")
 
-              div.col-xs-3.stat-holder
-                div.big-info.chart.text-info
-                  //- i.icon-difficulty
-                  span.small-title difficulty
-                  //- span.small-value {{ lastDifficulty | number }}
-                  sparkchart.big-details.spark-difficulty(data="{{difficultyChart.join(',')}}")
+      div.col-xs-2.stat-holder.xpull-right
+        div.big-info.chart.xdouble-chart
+          span.small-title last blocks miners
+          div.blocks-holder(ng-repeat='miner in miners track by miner.miner', data-toggle="tooltip", data-placement="right", data-original-title="{{miner.blocks}}")
+            div.block-count(class="{{miner.blocks | minerBlocksClass : 'text-'}}") {{miner.blocks}}
+            //- div.small-title-miner {{miner.miner | minerNameFilter : miner.name}}
+            div.small-title-miner {{miner.miner}}
+            minerblock(blocks="{{miner.blocks}}")
+            div.clearfix
+    div.row(ng-cloak)
+      div.col-xs-2.stat-holder
+        div.big-info.chart.text-info
+          //- i.icon-uncle
+          span.small-title uncle count&nbsp;
+            span.small (25 blocks per bar)
+          //- span.small-value {{ bestStats.block.uncles.length }}/{{ uncleCount }}
+          sparkchart.big-details.spark-uncles(data="{{uncleCountChart.join(',')}}")
 
-              div.col-xs-3.stat-holder.xpull-right
-                div.big-info.chart.xdouble-chart(class="{{ blockPropagationAvg | propagationAvgTimeClass : true }}")
-                  //- i.icon-gas
-                  span.small-title block propagation
-                  //- span.small-value {{ blockPropagationAvg | blockPropagationFilter : '' }}
-                  histogram.big-details.d3-blockpropagation(data="blockPropagationChart")
+      div.col-xs-2.stat-holder
+        div.big-info.chart.text-info
+          //- i.icon-uncle
+          span.small-title transactions
+          sparkchart.big-details.spark-transactions(data="{{transactionDensity.join(',')}}")
 
-              div.col-xs-3.stat-holder.xpull-right
-                div.big-info.chart.xdouble-chart
-                  span.small-title last blocks miners
-                  div.blocks-holder(ng-repeat='miner in miners track by miner.miner', data-toggle="tooltip", data-placement="right", data-original-title="{{miner.blocks}}")
-                    div.block-count(class="{{miner.blocks | minerBlocksClass : 'text-'}}") {{miner.blocks}}
-                    //- div.small-title-miner {{miner.miner | minerNameFilter : miner.name}}
-                    div.small-title-miner {{miner.miner}}
-                    minerblock(blocks="{{miner.blocks}}")
-                    div.clearfix
+      div.col-xs-2.stat-holder
+        div.big-info.chart.text-info
+          //- i.icon-gasprice
+          span.small-title gas spending
+          sparkchart.big-details.spark-gasspending(data="{{gasSpending.join(',')}}")
 
-              div.col-xs-3.stat-holder
-                div.big-info.chart.text-info
-                  //- i.icon-uncle
-                  span.small-title uncle count&nbsp;
-                    span.small (25 blocks per bar)
-                  //- span.small-value {{ bestStats.block.uncles.length }}/{{ uncleCount }}
-                  sparkchart.big-details.spark-uncles(data="{{uncleCountChart.join(',')}}")
+      div.col-xs-2.stat-holder
+        div.big-info.chart.text-info
+          //- i.icon-difficulty
+          span.small-title gas limit
+          //- span.small-value {{ lastDifficulty | number }}
+          sparkchart.big-details.spark-difficulty(data="{{lastGasLimit.join(',')}}")
 
-              div.col-xs-3.stat-holder
-                div.big-info.chart.text-info
-                  //- i.icon-uncle
-                  span.small-title transactions
-                  sparkchart.big-details.spark-transactions(data="{{transactionDensity.join(',')}}")
-
-              div.col-xs-3.stat-holder
-                div.big-info.chart.text-info
-                  //- i.icon-gasprice
-                  span.small-title gas spending
-                  sparkchart.big-details.spark-gasspending(data="{{gasSpending.join(',')}}")
-
-              div.col-xs-3.stat-holder
-                div.big-info.chart.text-info
-                  //- i.icon-difficulty
-                  span.small-title gas limit
-                  //- span.small-value {{ lastDifficulty | number }}
-                  sparkchart.big-details.spark-difficulty(data="{{lastGasLimit.join(',')}}")
-
-
-    div.row
-      div.col-xs-4.stat-holder.map-holder
-        //- div.col-xs-12
-        nodemap#mapHolder(data="map")
-
-
-
-    div.row
+    div.row(ng-cloak)
       div.col-xs-12.stats-boxes
         div.row.second-row
           div.col-xs-12.stat-holder.box
             div.active-nodes.text-warning
-              i.icon-warning-o
-              span.small-title ATTENTION!
-              span.small-value This page does not represent the entire state of the ethereum network - listing a node on this page is a voluntary process.
+              img(src="images/warning-icon.png")
+              span.small-title This page does not represent the entire state of the ambrosus network - listing a node on this page is a voluntary process.
           //- div.col-xs-12.stat-holder.box
           //-   div.active-nodes.text-danger
           //-     i.icon-hashrate

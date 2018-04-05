@@ -5,9 +5,11 @@ html {
 body {
 	width: 100%;
 	min-width: 1900px;
+	background: #EFF1F7;
 	font-smooth: auto;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	font-family: 'Source Sans Pro', sans-serif;
 }
 
 table td {
@@ -16,6 +18,103 @@ table td {
 	-webkit-font-smoothing: subpixel-antialiased;
 	-moz-osx-font-smoothing: auto;
 }
+
+header {
+	height: 120px;
+	min-width: 1900px;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 88.15%;
+
+	background: #030335;
+	mix-blend-mode: normal;
+}
+
+#shape1, #shape2, #shape3 {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+}
+
+#shape1 {
+	background: url("../shapes/shape1.svg") no-repeat;
+}
+
+#shape2 {
+	background: url("../shapes/shape2.svg") no-repeat;
+}
+
+#shape3 {
+	background: url("../shapes/shape3.svg") no-repeat;
+}
+
+.header-container {
+	display: flex;
+	justify-content: space-between;
+}
+
+.logo {
+	margin-left: 15px;
+	margin-top: 24px;
+}
+
+.logo-image {
+	width: 191px;
+	height: 32px;
+	filter: brightness(0) invert(1)
+}
+
+.status-container {
+	display: flex;
+	margin-top: 28px;
+}
+
+.status {
+	margin-right: 45px;
+	color: #80A6B7;
+}
+
+.status > .status-name:before {
+	content: "";
+	display: block;
+	width: 20px;
+	height: 20px;
+	float: left;
+	margin: 0 6px 0 0;
+}
+
+.active-nodes > .status-name:before {
+	background: url("../images/active-nodes-icon.png") no-repeat;
+}
+
+.gas-price > .status-name:before,
+.gas-limit > .status-name:before {
+	background: url("../images/gas-price-icon.png") no-repeat;
+}
+
+.page-latency > .status-name:before {
+	background: url("../images/page-latency-icon.png") no-repeat;
+}
+
+.uptime > .status-name:before {
+	background: url("../images/uptime-icon.png") no-repeat;
+}
+
+.status-value {
+	font-size: 24px;
+	font-weight: 600;
+	color: #ffffff;
+}
+
+
+.status-name{
+	font-weight: 500;
+	font-size: 11px;
+}
+
+
 
 .propagationBox {
 	position: relative;
@@ -35,7 +134,19 @@ table td {
 
 .bg-info,
 .text-info .propagationBox {
-	background: #10a0de;
+	background: #227ECC;
+}
+
+.text-info {
+	color: #227ECC !important;
+}
+
+.text-success {
+	color: #6BBF28 !important;
+}
+
+.text-danger {
+	color: #F63030 !important;
 }
 
 .bg-warning,
@@ -75,13 +186,21 @@ table td {
 }
 
 .container-fluid {
+	margin-top: 93px;
 	padding-left: 30px;
 	padding-right: 30px;
 }
 
 .stat-holder {
-	background: #090909;
-	border: 1px solid rgba(255,255,255,0.05);
+	background: white;
+	box-shadow: 0px 5px 11px rgba(76, 88, 122, 0.0704257);
+	border-radius: 4px;
+	margin-bottom: 10px;
+	margin-right: 10px;
+}
+
+.blocktime-holder {
+	width: 33.8333333%;
 }
 
 .big-info {
@@ -89,14 +208,14 @@ table td {
 	padding-bottom: 15px;
 }
 
-.big-info .icon-full-width i {
+.big-info .icon-full-width {
 	display: block;
 	width: 85px;
 	height: 70px;
 	font-size: 70px;
 	line-height: 70px;
-	margin-right: 15px;
-	margin-left: -15px;
+	padding-right: 15px;
+	padding-left: -15px;
 }
 
 .big-info span.small-title,
@@ -106,12 +225,12 @@ table td {
 
 span.small-title,
 div.small-title-miner {
-	font-weight: 700;
-	font-size: 14px;
+	font-weight: 400;
+	font-size: 16px;
 	line-height: 20px;
 	letter-spacing: 1px;
-	text-transform: uppercase;
-	color: #aaa;
+	text-transform: capitalize;
+	color: #607985;
 }
 
 span.small-title span.small {
@@ -126,7 +245,7 @@ span.small-title span.small {
 
 .big-info .big-details {
 	display: block;
-	font-weight: 200;
+	font-weight: 500 !important;
 	font-size: 50px;
 	line-height: 55px;
 	letter-spacing: -4px;
@@ -135,6 +254,10 @@ span.small-title span.small {
 
 .big-info .big-details .small-hash {
 	font-size: 87%;
+}
+
+.blocktime-holder canvas {
+	width: 600px !important;
 }
 
 .big-info .big-details-holder {
@@ -213,18 +336,23 @@ span.small-title span.small {
 	height: 40px;
 	line-height: 24px !important;
 	padding: 5px 15px;
+	width: 100%;
+	background: #EDE8DF;
 }
 
-.second-row .box i,
+.second-row .box .small-title {
+	display: block;
+	color: #E3960A;
+	font-size: 13px;
+	margin-top: -19px;
+	margin-left: 24px;
+}
+
+.second-row .box img,
 .big-info.chart i {
-	position: relative;
-	top: 2px;
-	left: -3px;
-	font-size: 24px;
-	-webkit-font-smoothing: subpixel-antialiased;
-	-moz-osx-font-smoothing: auto;
-	margin-right: 7px;
-	float: left;
+	margin-top: 8px;
+	height: 16px;
+	width: 16px;
 }
 
 .big-info.chart i {
@@ -337,13 +465,19 @@ nodepropagchart {
 
 .map-holder {
 	padding: 0;
+	position: absolute;
+	top: 93px;
+	left: 1301px;
+	width: 584px;
+	height: 360px;
+	z-index: 1;
 }
 
 #mapHolder {
 	position: relative;
 	display: block;
 	width: 100%;
-	height: 242px;
+	height: 100%;
 	overflow: hidden;
 }
 

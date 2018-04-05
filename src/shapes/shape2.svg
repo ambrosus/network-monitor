@@ -1,0 +1,17 @@
+<svg width="885" height="120" viewBox="0 0 885 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Fill 3 Copy 3</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-245 -342)">
+<g id="Fill 3 Copy 3">
+<use xlink:href="#path0_fill" transform="matrix(0.913545 -0.406737 0.406737 0.913545 -407.659 -252.227)" fill="url(#paint0_linear)"/>
+</g>
+</g>
+<defs>
+<linearGradient id="paint0_linear" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(-2379.05 497.682 -441.701 -2680.57 1216.68 434.093)">
+<stop offset="0" stop-color="#53A0FD" stop-opacity="0.01"/>
+<stop offset="0.736177" stop-color="#3023AE" stop-opacity="0.250679"/>
+<stop offset="1" stop-color="#51035E" stop-opacity="0.493886"/>
+</linearGradient>
+<path id="path0_fill" fill-rule="evenodd" d="M 1280.09 497.129C 1263.14 245.093 228.278 104.044 0 0L 282.708 1442.33C 540.398 1336.46 1260.05 1228.95 1241.12 947.237L 1280.09 497.129Z"/>
+</defs>
+</svg>

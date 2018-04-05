@@ -166,7 +166,7 @@ angular.module('netStatsApp.directives', [])
 							tooltipSuffix: '',
 							chartRangeMax: 8000,
 							colorMap: jQuery.range_map({
-								'0:1': '#10a0de',
+								'0:1': '#227ECC',
 								'1:1000': '#7bcc3a',
 								'1001:3000': '#FFD162',
 								'3001:7000': '#ff8a00',
@@ -220,7 +220,7 @@ angular.module('netStatsApp.directives', [])
 						height: 242,
 						fills: {
 							success: '#7BCC3A',
-							info: '#10A0DE',
+							info: '#227ECC',
 							warning: '#FFD162',
 							orange: '#FF8A00',
 							danger: '#F74B4B',

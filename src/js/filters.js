@@ -132,7 +132,7 @@ angular.module('netStatsApp.filters', [])
 		{
 			var tmp = version.split('/');
 
-			tmp[0] = tmp[0].replace('Ethereum(++)', 'Eth');
+			tmp[0] = tmp[0].replace('Ambrosus(++)', 'Amb');
 
 			if(tmp[0].indexOf('pyethapp') === 0)
 			{
@@ -172,27 +172,18 @@ angular.module('netStatsApp.filters', [])
 	var numberFilter = filter('number');
 	return function(price) {
 		if(typeof price === 'undefined')
-			return "0 wei";
-
-		if(price.length < 4)
-			return numberFilter(price) + " wei";
-
-		if(price.length < 7)
-			return numberFilter(price/1000) + " kwei";
-
-		if(price.length < 10)
-			return numberFilter(price/1000000) + " mwei";
+			return "0 ambits";
 
 		if(price.length < 13)
-			return numberFilter(price/1000000000) + " gwei";
+			return numberFilter(price/1000000000) + " ambits";
 
 		if(price.length < 16)
-			return numberFilter(price/1000000000000) + " szabo";
+			return numberFilter(price/1000000000000) + " kambits";
 
 		if(price.length < 19)
-			return numberFilter(price.substr(0, price.length - 15)) + " finney";
+			return numberFilter(price.substr(0, price.length - 15)) + " mambits";
 
-		return numberFilter(price.substr(0, price.length - 18)) + " ether";
+		return numberFilter(price.substr(0, price.length - 18)) + " amber";
 	}
 }])
 .filter('gasFilter', function() {
