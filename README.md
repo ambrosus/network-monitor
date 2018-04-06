@@ -1,10 +1,9 @@
-Ethereum Network Stats
+Ambrosus Network Stats
 ============
-[![Build Status][travis-image]][travis-url] [![dependency status][dep-image]][dep-url]
 
-This is a visual interface for tracking ethereum network status. It uses WebSockets to receive stats from running nodes and output them through an angular interface. It is the front-end implementation for [eth-net-intelligence-api](https://github.com/cubedro/eth-net-intelligence-api).
+This is a visual interface for tracking the Ambrosus network status. It uses WebSockets to receive stats from running nodes and output them through an angular interface. It is the front-end implementation for [eth-net-intelligence-api](https://github.com/cubedro/eth-net-intelligence-api).
 
-![Screenshot](https://raw.githubusercontent.com/cubedro/eth-netstats/master/src/images/screenshot.jpg?v=0.0.6 "Screenshot")
+![Screenshot](https://raw.githubusercontent.com/ambrosus/network-monitor/master/screenshot.png "Screenshot")
 
 ## Prerequisite
 * node
@@ -16,8 +15,8 @@ Make sure you have node.js and npm installed.
 Clone the repository and install the dependencies
 
 ```bash
-git clone https://github.com/cubedro/eth-netstats
-cd eth-netstats
+git clone https://github.com/ambrosus/network-monitor
+cd network-monitor
 npm install
 sudo npm install -g grunt-cli
 ```
@@ -47,42 +46,5 @@ grunt all
 npm start
 ```
 
-## Run in PM2 - daemon mode.
-* Install PM2:
-```bash 
-sudo npm install -g pm2
-```
-
-* Create an app.json file in the local directory of eth-netstats:
-```json[
-  {
-    "name"        : "eth-netstats",
-    "cwd"         : "<folder-path-to-eth-netstats-e.g. /home/gethadmin/eth-netstats/>",
-    "script"      : "app.js",
-    "log_date_format"   : "YYYY-MM-DD HH:mm Z",
-    "merge_logs"    : false,
-    "watch"       : false,
-    "exec_interpreter"  : "node",
-    "exec_mode"     : "fork_mode",
-    "env":
-    {
-      "NODE_ENV"    : "development",
-      "PORT"           : <port>,
-      "WS_SECRET"     : "<password>"
-    }
-  }
-]
-```
-* Run eth-netstats as PM2 service and persist the service for reboot
-```bash
-pm2 start ./app.json
-pm2 save
-```
-
-
 see the interface at http://localhost:3000
 
-[travis-image]: https://travis-ci.org/cubedro/eth-netstats.svg
-[travis-url]: https://travis-ci.org/cubedro/eth-netstats
-[dep-image]: https://david-dm.org/cubedro/eth-netstats.svg
-[dep-url]: https://david-dm.org/cubedro/eth-netstats
