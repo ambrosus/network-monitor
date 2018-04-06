@@ -1,4 +1,4 @@
-Ambrosus Network Stats
+Ambrosus Network Monitor
 ============
 
 This is a visual interface for tracking the Ambrosus network status. It uses WebSockets to receive stats from running nodes and output them through an angular interface. It is the front-end implementation for [eth-net-intelligence-api](https://github.com/cubedro/eth-net-intelligence-api).
@@ -22,7 +22,7 @@ sudo npm install -g grunt-cli
 ```
 
 ## Build the resources
-NetStats features two versions: the full version and the lite version. In order to build the static files you have to run grunt tasks which will generate dist or dist-lite directories containing the js and css files, fonts and images.
+Network Monitor features two versions: the full version and the lite version. In order to build the static files you have to run grunt tasks which will generate dist or dist-lite directories containing the js and css files, fonts and images.
 
 
 To build the full version run
