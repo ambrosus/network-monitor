@@ -1,10 +1,13 @@
 html {
 	width: 100%;
+	min-height: 100% !important;
+	height: 100%;
 }
 
 body {
 	width: 100%;
 	min-width: 1900px;
+	height: 100%;
 	background: #EFF1F7;
 	font-smooth: auto;
 	-webkit-font-smoothing: antialiased;
@@ -558,6 +561,17 @@ nodepropagchart {
 
 .hoverinfo .propagationBox {
 	top: 3px;
+}
+
+.wrapper {
+	min-height: 100%;
+	margin-bottom: -1em;
+}
+
+footer {
+	color: #1C2770;
+	margin-left: 20px;
+	height: 1em;
 }
 
 svg {

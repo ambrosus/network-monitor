@@ -8,6 +8,10 @@ html(ng-app="netStatsApp")
     link(rel='stylesheet', href='//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700')
     link(rel='stylesheet', href='/css/netstats.min.css')
   body
-    block content
+    div.wrapper
+      block content
+    footer
+      p Forked from&nbsp
+        a(href="https://github.com/cubedro/eth-netstats") Eth-Netstats
 
     script(src="/js/netstats.min.js")
