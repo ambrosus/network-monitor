@@ -115,7 +115,36 @@ angular.module('netStatsApp.directives', [])
 				};
 			}
 		};
-})
+	})
+	.directive('nectarlimit', function () {
+		return {
+			restrict: 'E',
+			scope: {
+				data: '@'
+			},
+			compile: function (tElement, tAttrs, transclude)
+			{
+				tElement.replaceWith('<span>' + tAttrs.data + "</span>");
+
+				return function(scope, element, attrs)
+				{
+					attrs.$observe("data", function (newValue)
+					{
+						element.html(newValue);
+						element.addClass("big-details");
+						element.sparkline('html', {
+							type: 'bar',
+							barWidth: attrs.width,
+							tooltipSuffix: (attrs.tooltipsuffix || ''),
+              chartRangeMin: 3000000,
+							chartRangeMax: 8000000
+            });
+					});
+				};
+			}
+		};
+	})
+
 	.directive('nodepropagchart', function() {
 		return {
 			restrict: 'E',
@@ -168,10 +197,10 @@ angular.module('netStatsApp.directives', [])
 							chartRangeMax: 8000,
 							colorMap: jQuery.range_map({
 								'0:1': '#227ECC',
-								'1:1000': '#7bcc3a',
+								'1:1000': '#6BBF28',
 								'1001:3000': '#FFD162',
 								'3001:7000': '#ff8a00',
-								'7001:': '#F74B4B'
+								'7001:': '#F63030'
 							}),
 							tooltipFormatter: function (spark, opt, ms) {
 								var tooltip = '<div class="tooltip-arrow"></div><div class="tooltip-inner">';
