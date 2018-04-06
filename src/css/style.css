@@ -1,6 +1,5 @@
 html {
 	width: 100%;
-	min-width: 1900px;
 }
 
 body {
@@ -34,7 +33,7 @@ header {
 }
 
 .row {
-	min-width: 1900px;
+	/*min-width: 1900px;*/
 }
 
 #shape1, #shape2, #shape3 {
@@ -414,6 +413,13 @@ nodepropagchart {
 	border-radius: 4px;
 }
 
+.table-icon {
+	width: 18px;
+	height: 18px;
+	margin-bottom: 3px;
+	margin-left: 2px;
+}
+
 .table>tbody>tr>td,
 .table>thead>tr>th {
 	padding: 5px;
@@ -468,7 +474,7 @@ nodepropagchart {
 	padding: 0;
 	position: absolute;
 	top: 93px;
-	left: 1322px;
+	left: 1301px;
 	width: 584px;
 	height: 360px;
 	z-index: 1;

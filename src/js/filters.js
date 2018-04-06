@@ -20,10 +20,10 @@ angular.module('netStatsApp.filters', [])
 })
 .filter('nodePinClass', function() {
 	return function(pinned) {
-	  	if(pinned)
-	  		return 'icon-check-o';
+    if(pinned)
+      return 'images/star-off-icon.png';
 
-	  	return 'icon-loader';
+    return 'images/star-off-icon.png';
 	};
 })
 .filter('mainClass', function() {
@@ -63,7 +63,7 @@ angular.module('netStatsApp.filters', [])
 		var unit = 'K';
 
 		if( !isMining )
-			return $sce.trustAsHtml('<i class="icon-cancel"></i>');
+			return $sce.trustAsHtml('<img src="images/cross-icon.png" class="table-icon"/>');
 
 		if(hashes !== 0 && hashes < 1000) {
 			result = hashes;
