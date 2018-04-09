@@ -428,6 +428,10 @@ nodepropagchart {
 	padding: 5px;
 }
 
+.table-row {
+	color: #000;
+}
+
 .th-nodecheck,
 .td-nodecheck {
 	width: 38px;

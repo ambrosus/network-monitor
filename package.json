@@ -3,10 +3,6 @@
   "description": "Ethereum Network Intelligence dashboard",
   "version": "0.0.9",
   "private": true,
-  "engines": {
-    "node": "0.12.0",
-    "npm": "2.5.1"
-  },
   "scripts": {
     "start": "node ./bin/www"
   },
@@ -17,6 +13,7 @@
     "debug": "^3.1.0",
     "express": "^4.16.3",
     "geoip-lite": "^1.2.1",
+    "geoip2": "^1.0.5",
     "grunt": "^0.4.5",
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-concat": "^0.5.1",
@@ -29,6 +26,7 @@
     "primus": "^6.0.5",
     "primus-emit": "^1.0.0",
     "primus-spark-latency": "^0.1.1",
+    "request": "^2.85.0",
     "ws": "^1.1.1"
   },
   "repository": {

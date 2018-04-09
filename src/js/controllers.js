@@ -492,12 +492,11 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 
 		$scope.map = _.map($scope.nodes, function (node) {
 			var fill = $filter('bubbleClass')(node.stats, $scope.bestBlock);
-
-			if(node.geo != null)
+			if(node.geo !== null)
 				return {
 					radius: 3,
-					latitude: node.geo.ll[0],
-					longitude: node.geo.ll[1],
+					latitude: node.geo.latitude,
+					longitude: node.geo.longitude,
 					nodeName: node.info.name,
 					fillClass: "text-" + fill,
 					fillKey: fill,
