@@ -411,6 +411,21 @@ nodepropagchart {
 	vertical-align: top;
 }
 
+.table>thead>tr>th {
+	border: none !important;
+}
+
+.table>tbody>tr>td {
+	border-top: none !important;
+	border-bottom: #D8D8D8 solid 3px;
+}
+
+.table>tbody>tr:last-child>td {
+	border-bottom: none !important;
+}
+
+
+
 .table {
 	background-color: white !important;
 	border-radius: 4px;
@@ -428,8 +443,9 @@ nodepropagchart {
 	padding: 5px;
 }
 
-.table-row {
-	color: #000;
+.table-row td {
+	color: #41484B;
+	font-size: 12px !important;
 }
 
 .th-nodecheck,
