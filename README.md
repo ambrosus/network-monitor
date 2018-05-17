@@ -3,7 +3,7 @@ Ambrosus Network Monitor
 
 This is a visual interface for tracking the Ambrosus network status. It uses WebSockets to receive stats from running nodes and output them through an angular interface. It is the front-end implementation for [eth-net-intelligence-api](https://github.com/cubedro/eth-net-intelligence-api).
 
-![Screenshot](https://raw.githubusercontent.com/ambrosus/network-monitor/master/screenshot.png "Screenshot")
+![Screenshot](screenshot.png "Screenshot")
 
 ## Prerequisite
 * node
