@@ -1,9 +1,13 @@
-FROM node
+FROM node:8
 
-RUN git clone https://github.com/cubedro/eth-netstats /eth-netstats
-WORKDIR /eth-netstats
+WORKDIR /app
+
+COPY ./package.json /app/
+
 RUN npm install
-RUN npm install -g grunt-cli
-RUN grunt
 
-CMD ["npm", "start"]
+COPY . /app
+
+RUN npx grunt
+
+CMD npm start
