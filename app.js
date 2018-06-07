@@ -25,7 +25,7 @@ else
 	}
 	catch (e)
 	{
-		console.error("WS_SECRET NOT SET!!!");
+    throw new Error("WS_SECRET NOT SET!!!");
 	}
 }
 
